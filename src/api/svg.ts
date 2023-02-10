@@ -157,7 +157,7 @@ const runnersToPage = (
 ): SVGElementToDrawMap => ({
   async text(element) {
     const anchor = element.svgAttributes.textAnchor;
-    const text = element.childNodes[0].text;
+    const text = element.text;
     const fontSize = element.svgAttributes.fontSize || 12;
 
     /** This will find the best font for the provided style in the list */
@@ -312,7 +312,7 @@ const runnersToPage = (
               point: nextPoint,
               command: isLocalInstruction
                 ? `M${normalizedNext.x},${normalizedNext.y}`
-                : `M${params[0]},${params[1]}`,
+                : `M${nextPoint.x},${nextPoint.y}`,
             };
           }
 
@@ -330,7 +330,7 @@ const runnersToPage = (
             ? ''
             : isLocalInstruction
             ? `M${normalizedNext.x},${normalizedNext.y}`
-            : `M${params[0]},${params[1]}`;
+            : `M${nextPoint.x},${nextPoint.y}`;
           return {
             point: nextPoint,
             command: `${startInstruction} L${endPoint.x},${endPoint.y} ${endInstruction} `,
